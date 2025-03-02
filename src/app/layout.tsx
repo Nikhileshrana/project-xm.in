@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/Navbar";
 import FooterWrapper from "@/components/FooterWrapper";
 import "./globals.css";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -52,6 +53,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <Script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-CZVDB0N26Q"
+      />
+      <Script
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-CZVDB0N26Q');
+              `,
+        }}
+      />
+
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

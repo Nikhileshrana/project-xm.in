@@ -2,7 +2,6 @@ import { tool as createTool } from "ai";
 import { z } from "zod";
 import { getTours } from "@/lib/api";
 import axios from "axios";
-import { describe } from "node:test";
 
 export const weatherTool = createTool({
   description: "Display the weather for a location",
