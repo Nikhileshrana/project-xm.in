@@ -1,3 +1,6 @@
+import { getTours } from "@/lib/api";
+import type { Metadata } from "next";
+import Script from "next/script";
 import { HeroSection } from "@/components/Hero-Section";
 import Faq from "@/components/Faq";
 import { MarqueeAnimation } from "@/components/ui/marquee-effect";
@@ -5,8 +8,6 @@ import { Features } from "@/components/Features";
 import Testimonial from "@/components/Testimonial";
 import Tours from "@/components/Tours";
 import { Pricing } from "@/components/ui/pricing-section-with-comparison";
-import { getTours } from "@/lib/api";
-import type { Metadata } from "next";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
@@ -51,6 +52,9 @@ export const metadata: Metadata = {
 };
 
 export default async function page() {
+
+  const tours = await getTours();
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -81,32 +85,34 @@ export default async function page() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
+        type: "WebPage",
         item: "https://www.indiantraveltour.in",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Tour Packages",
+        type: "WebPage",
         item: "https://www.indiantraveltour.in/tour",
       },
       {
         "@type": "ListItem",
         position: 3,
         name: "Contact Us",
+        type: "WebPage",
         item: "https://www.indiantraveltour.in/contact",
       },
     ],
   };
 
-  const tours = await getTours();
 
   return (
     <>
-      <script
+      <Script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <script
+      <Script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }}
       />

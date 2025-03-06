@@ -4,6 +4,7 @@ import { Features } from "@/components/Features";
 import type { Metadata } from "next";
 import { getTours } from "@/lib/api";
 import { Suspense } from "react";
+import { type } from "os";
 
 export const metadata: Metadata = {
   title: "Tour Packages in India | Indian Travel Tour",
@@ -60,12 +61,14 @@ export default async function ToursPage() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
+        type: "WebPage",
         item: "https://www.indiantraveltour.in",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Tour Packages",
+        type: "WebPage",
         item: "https://www.indiantraveltour.in/tour",
       },
     ],

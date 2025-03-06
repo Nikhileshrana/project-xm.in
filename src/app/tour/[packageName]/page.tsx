@@ -66,18 +66,21 @@ export default async function TourPackagePage({ params, searchParams }: Props) {
         "@type": "ListItem",
         position: 1,
         name: "Home",
+        type: "WebPage",
         item: "https://www.indiantraveltour.in/",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Tour Packages",
+        type: "WebPage",
         item: "https://www.indiantraveltour.in/tour",
       },
       {
         "@type": "ListItem",
         position: 3,
         name: tourPackage?.heading1 ?? "Tour Package Not Found",
+        type: "WebPage",
         item: tourPackage?.slug
           ? `https://www.indiantraveltour.in/tour/${tourPackage.slug}`
           : "https://www.indiantraveltour.in/tour",
