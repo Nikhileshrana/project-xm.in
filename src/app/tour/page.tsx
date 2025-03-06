@@ -1,10 +1,10 @@
 import React from "react";
+import Script from "next/script";
 import Tours from "@/components/Tours";
 import { Features } from "@/components/Features";
 import type { Metadata } from "next";
 import { getTours } from "@/lib/api";
 import { Suspense } from "react";
-import { type } from "os";
 
 export const metadata: Metadata = {
   title: "Tour Packages in India | Indian Travel Tour",
@@ -56,27 +56,36 @@ export default async function ToursPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: [
+    "@id": "https://www.indiantraveltour.in/#breadcrumb",
+    "itemListElement": [
       {
         "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        type: "WebPage",
-        item: "https://www.indiantraveltour.in",
+        "position": 1,
+        "name": "Home",
+        "item": {
+          "@type": "WebPage",
+          "@id": "https://www.indiantraveltour.in",
+          "url": "https://www.indiantraveltour.in",
+          "name": "Home"
+        }
       },
       {
         "@type": "ListItem",
-        position: 2,
-        name: "Tour Packages",
-        type: "WebPage",
-        item: "https://www.indiantraveltour.in/tour",
-      },
-    ],
-  };
+        "position": 2,
+        "name": "Tour Packages",
+        "item": {
+          "@type": "WebPage",
+          "@id": "https://www.indiantraveltour.in/tour",
+          "url": "https://www.indiantraveltour.in/tour",
+          "name": "Tour Packages"
+        }
+      }
+    ]
+  }  
 
   return (
     <>
-      <script
+      <Script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />

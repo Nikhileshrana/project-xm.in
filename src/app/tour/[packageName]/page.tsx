@@ -61,57 +61,83 @@ export default async function TourPackagePage({ params, searchParams }: Props) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: [
+    "@id": "https://www.indiantraveltour.in/#breadcrumb",
+    "itemListElement": [
       {
         "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        type: "WebPage",
-        item: "https://www.indiantraveltour.in/",
+        "position": 1,
+        "name": "Home",
+        "item": {
+          "@type": "WebPage",
+          "@id": "https://www.indiantraveltour.in/",
+          "url": "https://www.indiantraveltour.in/",
+          "name": "Home"
+        }
       },
       {
         "@type": "ListItem",
-        position: 2,
-        name: "Tour Packages",
-        type: "WebPage",
-        item: "https://www.indiantraveltour.in/tour",
+        "position": 2,
+        "name": "Tour Packages",
+        "item": {
+          "@type": "WebPage",
+          "@id": "https://www.indiantraveltour.in/tour",
+          "url": "https://www.indiantraveltour.in/tour",
+          "name": "Tour Packages"
+        }
       },
       {
         "@type": "ListItem",
-        position: 3,
-        name: tourPackage?.heading1 ?? "Tour Package Not Found",
-        type: "WebPage",
-        item: tourPackage?.slug
-          ? `https://www.indiantraveltour.in/tour/${tourPackage.slug}`
-          : "https://www.indiantraveltour.in/tour",
-      },
-    ],
+        "position": 3,
+        "name": tourPackage?.heading1 ?? "Tour Package Not Found",
+        "item": {
+          "@type": "WebPage",
+          "@id": tourPackage?.slug
+            ? `https://www.indiantraveltour.in/tour/${tourPackage.slug}`
+            : "https://www.indiantraveltour.in/tour",
+          "url": tourPackage?.slug
+            ? `https://www.indiantraveltour.in/tour/${tourPackage.slug}`
+            : "https://www.indiantraveltour.in/tour",
+          "name": tourPackage?.heading1 ?? "Tour Package Not Found"
+        }
+      }
+    ]
   };
+  
 
   const jsonLdProduct = {
     "@context": "https://schema.org",
     "@type": "TouristTrip",
-    name: tourPackage?.heading1 ?? "Tour Package Not Found",
-    description: tourPackage?.heading2 ?? "Explore the best travel experiences",
-    address: "Rohini Delhi, India 110086",
-    telephone: "+91-9811171495",
-    image: tourPackage?.imageURL ?? "/placeholder.svg",
-    url: tourPackage?.slug
+    "@id": tourPackage?.slug
       ? `https://www.indiantraveltour.in/tour/${tourPackage.slug}`
       : "https://www.indiantraveltour.in/tour",
-    offers: {
+    "name": tourPackage?.heading1 ?? "Tour Package Not Found",
+    "description": tourPackage?.heading2 ?? "Explore the best travel experiences",
+    "image": [tourPackage?.imageURL ?? "/placeholder.svg"],
+    "url": tourPackage?.slug
+      ? `https://www.indiantraveltour.in/tour/${tourPackage.slug}`
+      : "https://www.indiantraveltour.in/tour",
+    "offers": {
       "@type": "Offer",
-      price: tourPackage?.price ?? "N/A",
-      priceCurrency: "USD",
-      availability: "https://schema.org/InStock",
-      validFrom: "2025-01-01",
+      "price": tourPackage?.price ? `${tourPackage.price}` : "0.00",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "validFrom": "2025-01-01"
     },
-    provider: {
+    "provider": {
       "@type": "TravelAgency",
-      name: "Indian Travel Tour",
-      url: "https://www.indiantraveltour.in",
-    },
+      "name": "Indian Travel Tour",
+      "url": "https://www.indiantraveltour.in",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rohini",
+        "addressLocality": "Delhi",
+        "addressCountry": "India",
+        "postalCode": "110086"
+      },
+      "telephone": "+91-9811171495"
+    }
   };
+  
 
   // If the tour package is not found, redirect to 404 page
   if (

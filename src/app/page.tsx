@@ -58,7 +58,7 @@ export default async function page() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Indian Travel Tour",
+    name: "Indian Travel Tour Info",
     url: "https://www.indiantraveltour.in",
     logo: "https://www.indiantraveltour.in/logo.png",
     address: "Rohini Delhi, India 110086",
@@ -80,30 +80,45 @@ export default async function page() {
   const jsonLdBreadcrumb = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: [
+    "@id": "https://www.indiantraveltour.in/#breadcrumb",
+    "name": "Indian Travel Tour",
+    "itemListElement": [
       {
         "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        type: "WebPage",
-        item: "https://www.indiantraveltour.in",
+        "position": 1,
+        "name": "Home",
+        "item": {
+          "@type": "WebPage",
+          "@id": "https://www.indiantraveltour.in",
+          "url": "https://www.indiantraveltour.in",
+          "name": "Home"
+        }
       },
       {
         "@type": "ListItem",
-        position: 2,
-        name: "Tour Packages",
-        type: "WebPage",
-        item: "https://www.indiantraveltour.in/tour",
+        "position": 2,
+        "name": "Tour Packages",
+        "item": {
+          "@type": "WebPage",
+          "@id": "https://www.indiantraveltour.in/tour",
+          "url": "https://www.indiantraveltour.in/tour",
+          "name": "Tour Packages"
+        }
       },
       {
         "@type": "ListItem",
-        position: 3,
-        name: "Contact Us",
-        type: "WebPage",
-        item: "https://www.indiantraveltour.in/contact",
-      },
-    ],
-  };
+        "position": 3,
+        "name": "Contact Us",
+        "item": {
+          "@type": "WebPage",
+          "@id": "https://www.indiantraveltour.in/contact",
+          "url": "https://www.indiantraveltour.in/contact",
+          "name": "Contact Us"
+        }
+      }
+    ]
+  }
+  
 
 
   return (
