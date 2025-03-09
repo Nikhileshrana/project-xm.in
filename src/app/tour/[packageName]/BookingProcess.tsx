@@ -30,6 +30,7 @@ import { format } from "date-fns";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { useRouter } from 'next/navigation'
 
 export default function BookingProcess({
   tourPackage,
@@ -42,7 +43,6 @@ export default function BookingProcess({
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedCountry, setSelectedCountry] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-
   const [formData, setFormData] = useState({
     startDate: selectedDate,
     adults: 1,
@@ -54,6 +54,9 @@ export default function BookingProcess({
     tourPackageBooked: tourPackage.heading1,
     tourPackagePrice: tourPackage.price,
   });
+
+  const router = useRouter();
+
 
   const countries = [
     { name: "Afghanistan", code: "+93" },
@@ -350,7 +353,10 @@ export default function BookingProcess({
     setTimeout(() => {
       setIsOpen(false);
       setCurrentStep(1);
+      router.push('/success');
     }, 2000);
+
+
   };
 
   return (
