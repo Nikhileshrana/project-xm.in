@@ -53,8 +53,9 @@ export default function TravelPopup() {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent className="sm:max-w-sm sm:w-[500px]">
         <DialogHeader>
-          <DialogTitle className="text-center text-xl">Looking for a tour? Share your details & get a reply in 12 hours!</DialogTitle>
+          <DialogTitle className="text-center text-xl">Planning a Trip? Let’s Make It Special!🌟✈️</DialogTitle>
           <DialogDescription className="text-center">
+          Share Your Phone/Email & Let’s Craft Your Perfect Journey!
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -90,7 +91,7 @@ export default function TravelPopup() {
           </div>
 
           <p className="text-xs text-muted-foreground text-center">
-            Don't worry, we do not spam messages. You can unsubscribe anytime.
+            Don't worry, we do not spam messages. You can trust us.
           </p>
 
           <DialogFooter className="sm:justify-center gap-3">
