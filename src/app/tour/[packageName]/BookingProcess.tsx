@@ -355,8 +355,6 @@ export default function BookingProcess({
       setCurrentStep(1);
       router.push('/success');
     }, 2000);
-
-
   };
 
   return (

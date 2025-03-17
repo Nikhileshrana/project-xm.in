@@ -9,6 +9,8 @@ import Testimonial from "@/components/Testimonial";
 import Tours from "@/components/Tours";
 import { Pricing } from "@/components/ui/pricing-section-with-comparison";
 import { Suspense } from "react";
+import TravelPopup from "@/components/travel-popup"
+
 
 export const metadata: Metadata = {
   title: "Best Tour Packages in India | Indian Travel Tour",
@@ -140,7 +142,7 @@ export default async function page() {
           },
         }}
         title="Book Now, Pay on Arrival!"
-        description="Govt-approved tour operator in New Delhi since 2007. Top-rated on TripAdvisor/Trustpilot. Custom trips at best rates in India, Nepal, Bhutan & Sri Lanka."
+        description="Govt-approved tour operator in New Delhi since 2007. Top-rated on TripAdvisor/Trustpilot. Custom trips at best rates Call/WhatsApp +91 9811171495"
         image={{
           light: "/hero.jpg",
           alt: "Hero Image",
@@ -165,7 +167,7 @@ export default async function page() {
           Meals, & Transport Included.
         </MarqueeAnimation>
       </div>
-
+      <TravelPopup/>
       <Suspense fallback={<p>Loading tours...</p>}>
         <Tours initialTours={tours} />
       </Suspense>
