@@ -60,6 +60,12 @@ interface Booking {
   createdAt: string;
 }
 
+interface leads{
+  _id: string;
+  email: string;
+  phone: string;
+}
+
 export default function AdminComponent() {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [heading1, setHeading1] = useState("");
@@ -76,13 +82,13 @@ export default function AdminComponent() {
   const [uploadProgress, setUploadProgress] = useState(0);
   const [keywords, setKeywords] = useState<string[]>([]);
   const [bookings, setBookings] = useState<Booking[]>([]);
+  const [leads, setleads] = useState<leads[]>([]);
   const [whatIncluded, setwhatIncluded] = useState<string[]>([]);
   const [whatNotIncluded, setwhatNotIncluded] = useState<string[]>([]);
   const [tourId, setTourId] = useState("");
 
   const handleReload = () => {
     setIsLoading(true);
-    fetchTourPackages();
     async function fetchBookings() {
       try {
         const response = await fetch("/api/mongoDB/listBookings"); // Adjust based on your API route
@@ -97,6 +103,22 @@ export default function AdminComponent() {
       }
     }
     fetchBookings();
+    fetchTourPackages();
+    fetchLeads();
+  };
+
+  const fetchLeads = async () => {
+    try {
+      setIsLoading(true);
+      const response = await axios.get("/api/mongoDB/listLeads");
+      if (response.data.success) {
+        setleads(response.data.data);
+      }
+    } catch (error) {
+      console.error("Error fetching leads:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleFileUpload = async (
@@ -636,6 +658,9 @@ export default function AdminComponent() {
             <TabsTrigger className="w-full" value="bookings">
               Bookings
             </TabsTrigger>
+            <TabsTrigger className="w-full" value="leads">
+              Leads
+            </TabsTrigger>
             <TabsTrigger className="w-full" value="settings">
               Settings
             </TabsTrigger>
@@ -965,6 +990,39 @@ export default function AdminComponent() {
       </CardContent>
     </Card>
        </TabsContent>
+
+       <TabsContent value="leads" className="space-y-4">
+    <Card>
+      <CardHeader>
+        <CardTitle>Leads</CardTitle>
+      </CardHeader>
+      <CardContent>
+        {leads.length > 0 ? (
+          <div className="overflow-x-auto">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Email</TableHead>
+                  <TableHead>Phone</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {leads.slice().reverse().map((leads) => (
+                  <TableRow key={leads._id}>
+                    <TableCell>{leads.email}</TableCell>
+                    <TableCell>{leads.phone}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+        ) : (
+          <p>No Leads found.</p>
+        )}
+      </CardContent>
+    </Card>
+       </TabsContent>
+
           <TabsContent value="settings" className="space-y-4">
             <Card>
               <CardHeader>
@@ -993,6 +1051,7 @@ export default function AdminComponent() {
               </CardContent>
             </Card>
           </TabsContent>
+          
         </Tabs>
 
         {errorMessage && (

@@ -28,14 +28,14 @@ export async function POST(req: Request) {
         const collection = db.collection("leads");
 
         // Prepare the booking data
-        const bookingData = {
+        const leadsData = {
             email,
             phone,
             createdAt: new Date()
         };
 
         // Insert the booking data into the collection
-        const result = await collection.insertOne(bookingData);
+        const result = await collection.insertOne(leadsData);
 
         // Return success response
         return NextResponse.json({
