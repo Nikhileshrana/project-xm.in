@@ -373,6 +373,11 @@ export default function TourPackageDetails({
           </div>
         </div>
       </Card>
+
+
+      <div className="flex justify-center">
+      <BookingProcess tourPackage={tourPackage} />
+      </div>
     </div>
   );
 }

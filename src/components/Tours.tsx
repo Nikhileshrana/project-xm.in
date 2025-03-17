@@ -329,7 +329,7 @@ export default function Tours({ initialTours }: { initialTours: Tour[] }) {
       </div>
       {filteredTours.length > visibleTours && (
         <div className="text-center mt-4 mx-auto justify-center w-full sm:ml-[28.5%] sm:w-[70%]">
-          <Button onClick={loadMoreTours} size="lg" variant="outline">
+          <Button onClick={loadMoreTours} size="lg" className="mt-5" variant="default">
             Load More
           </Button>
         </div>
