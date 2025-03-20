@@ -131,6 +131,7 @@ export default function TourPackageDetails({
                 </p>
               </div>
             </div>
+            <Badge className="flex justify-center text-center text-sm font-medium tracking-tight p-1 mt-3">Need to clear doubts? WhatsApp us at +91 9811171495</Badge>
           </Card>
         </div>
 
@@ -166,10 +167,10 @@ export default function TourPackageDetails({
                   </Link>
                 </div>
 
-                <h1 className="text-gray-800 dark:text-gray-200  text-3xl md:text-5xl tracking-tighter lg:max-w-xl font-regular">
+                <h1 className="text-gray-800 dark:text-gray-200  text-3xl md:text-3xl tracking-tighter lg:max-w-xl font-regular">
                   {tourPackage.heading1}
                 </h1>
-                <h2 className="leading-snug text-gray-600  dark:text-gray-200 text-lg md:text-2xl tracking-tighter lg:max-w-xl font-regular">
+                <h2 className="leading-snug text-gray-600  dark:text-gray-200 text-lg md:text-xl tracking-tighter lg:max-w-xl font-regular">
                   {tourPackage.heading2}
                 </h2>
               </div>
@@ -190,6 +191,7 @@ export default function TourPackageDetails({
             </div>
           </CardContent>
         </Card>
+        
       </div>
 
       <Card variant="dots">

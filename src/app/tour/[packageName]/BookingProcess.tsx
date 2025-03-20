@@ -365,7 +365,7 @@ export default function BookingProcess({
             size="lg"
             className="bg-yellow-400 text-black hover:bg-yellow-500 sm:text-lg sm:py-6"
           >
-            Reserve Now at $0
+            Get Final Price
           </Button>
         </DialogTrigger>
         <DialogContent className="max-w-[370px] sm:max-w-[800px] p-0 overflow-hidden rounded-xl bg-white">
@@ -407,7 +407,7 @@ export default function BookingProcess({
                     />
                     <div className="ml-4 flex-grow">
                       <h3 className="text-lg font-semibold text-gray-900">
-                        {tourPackage.heading1}
+                        {tourPackage.heading1.slice(0, 30)}...
                       </h3>
                       <div className="flex items-center justify-between mt-2">
                         <span className="text-2xl font-bold text-gray-900">

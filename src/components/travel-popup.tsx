@@ -24,8 +24,8 @@ export default function TravelPopup() {
   useEffect(() => {
     // Show popup after 2 seconds
     const timer = setTimeout(() => {
-      setOpen(true)
-    }, 2000)
+      setOpen(true);
+    }, 5000)
 
     return () => clearTimeout(timer)
   }, [])
