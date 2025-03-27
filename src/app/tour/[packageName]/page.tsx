@@ -5,6 +5,7 @@ import { Features } from "@/components/Features";
 import Testimonial from "@/components/Testimonial";
 import { notFound } from "next/navigation";
 import { RelatedTourPackages } from "@/components/ui/RelatedTourPackages";
+import  TravelPopup  from "@/components/travel-popup";
 
 type Props = {
   params: Promise<{ packageName: string }>;
@@ -158,6 +159,8 @@ export default async function TourPackagePage({ params, searchParams }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdProduct) }}
       />
+
+<TravelPopup/>
 
       <div className="min-h-screen bg-white dark:bg-background text-gray-900 dark:text-gray-100">
         <div className="container mx-auto px-2 py-4">

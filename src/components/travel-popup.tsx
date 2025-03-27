@@ -22,10 +22,9 @@ export default function TravelPopup() {
   const [isEmail, setIsEmail] = useState(false) // Changed to false to make phone the default
 
   useEffect(() => {
-    // Show popup after 2 seconds
     const timer = setTimeout(() => {
       setOpen(true);
-    }, 5000)
+    }, 7900)
 
     return () => clearTimeout(timer)
   }, [])
