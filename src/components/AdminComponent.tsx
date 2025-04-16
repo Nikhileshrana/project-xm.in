@@ -64,6 +64,9 @@ interface leads{
   _id: string;
   email: string;
   phone: string;
+  createdAt: string;
+  country: string;
+  message: string;
 }
 
 export default function AdminComponent() {
@@ -992,36 +995,46 @@ export default function AdminComponent() {
        </TabsContent>
 
        <TabsContent value="leads" className="space-y-4">
-    <Card>
-      <CardHeader>
-        <CardTitle>Leads</CardTitle>
-      </CardHeader>
-      <CardContent>
-        {leads.length > 0 ? (
-          <div className="overflow-x-auto">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Email</TableHead>
-                  <TableHead>Phone</TableHead>
+  <Card>
+    <CardHeader>
+      <CardTitle>Leads</CardTitle>
+    </CardHeader>
+    <CardContent>
+      {leads.length > 0 ? (
+        <div className="overflow-x-auto">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Email</TableHead>
+                <TableHead>Phone</TableHead>
+                <TableHead>Created At</TableHead>
+                <TableHead>Country</TableHead>
+                <TableHead>Message</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {leads.slice().reverse().map((leads) => (
+                <TableRow key={leads._id}>
+                  <TableCell>{leads.email}</TableCell>
+                  <TableCell>{leads.phone}</TableCell>
+                  <TableCell>
+                    {leads.createdAt
+                      ? new Date(leads.createdAt).toLocaleString()
+                      : ""}
+                  </TableCell>
+                  <TableCell>{leads.country}</TableCell>
+                  <TableCell>{leads.message}</TableCell>
                 </TableRow>
-              </TableHeader>
-              <TableBody>
-                {leads.slice().reverse().map((leads) => (
-                  <TableRow key={leads._id}>
-                    <TableCell>{leads.email}</TableCell>
-                    <TableCell>{leads.phone}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </div>
-        ) : (
-          <p>No Leads found.</p>
-        )}
-      </CardContent>
-    </Card>
-       </TabsContent>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      ) : (
+        <p>No Leads found.</p>
+      )}
+    </CardContent>
+  </Card>
+</TabsContent>
 
           <TabsContent value="settings" className="space-y-4">
             <Card>

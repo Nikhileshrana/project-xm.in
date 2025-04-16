@@ -16,7 +16,7 @@ async function connectDB() {
 export async function POST(req: Request) {
     try {
         const data = await req.json();
-        const { email,phone } = data;
+        const { country, message, email, phone } = data;
 
         // Check if required fields are provided
         if ( !email || !phone ) {
@@ -31,6 +31,8 @@ export async function POST(req: Request) {
         const leadsData = {
             email,
             phone,
+            country,
+            message,
             createdAt: new Date()
         };
 
