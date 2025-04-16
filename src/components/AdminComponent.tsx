@@ -18,7 +18,14 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
@@ -60,7 +67,7 @@ interface Booking {
   createdAt: string;
 }
 
-interface leads{
+interface leads {
   _id: string;
   email: string;
   phone: string;
@@ -368,7 +375,11 @@ export default function AdminComponent() {
         <header className="flex justify-between items-center">
           <h1 className="text-3xl font-bold">Indian Travel Tour</h1>
           <div className="flex flex-col-reverse gap-2 sm:flex-row">
-            <Button onClick={handleReload} variant="outline" className="flex items-center gap-2">
+            <Button
+              onClick={handleReload}
+              variant="outline"
+              className="flex items-center gap-2"
+            >
               {isLoading ? (
                 <>
                   <svg
@@ -412,13 +423,12 @@ export default function AdminComponent() {
                     </circle>
                   </svg>
                   Loading
-                  </>
+                </>
               ) : (
                 <>
-                <RefreshCw className="h-4 w-4" /> Reload
+                  <RefreshCw className="h-4 w-4" /> Reload
                 </>
               )}
-              
             </Button>
             <Dialog open={isOpen} onOpenChange={setIsOpen}>
               <DialogTrigger asChild>
@@ -949,92 +959,102 @@ export default function AdminComponent() {
             ))}
           </TabsContent>
           <TabsContent value="bookings" className="space-y-4">
-    <Card>
-      <CardHeader>
-        <CardTitle>Bookings</CardTitle>
-      </CardHeader>
-      <CardContent>
-        {bookings.length > 0 ? (
-          <div className="overflow-x-auto">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Tour Package</TableHead>
-                  <TableHead>Name</TableHead>
-                  <TableHead>Email</TableHead>
-                  <TableHead>Phone</TableHead>
-                  <TableHead>Start Date</TableHead>
-                  <TableHead>Adults</TableHead>
-                  <TableHead>Children</TableHead>
-                  <TableHead>Payment Method</TableHead>
-                  <TableHead>Price ($)</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {bookings.slice().reverse().map((booking) => (
-                  <TableRow key={booking._id}>
-                    <TableCell>{booking.tourPackageBooked}</TableCell>
-                    <TableCell>{booking.name}</TableCell>
-                    <TableCell>{booking.email}</TableCell>
-                    <TableCell>{booking.phone}</TableCell>
-                    <TableCell>{new Date(booking.startDate).toLocaleDateString()}</TableCell>
-                    <TableCell>{booking.adults}</TableCell>
-                    <TableCell>{booking.children}</TableCell>
-                    <TableCell>{booking.paymentMethod}</TableCell>
-                    <TableCell>{booking.tourPackagePrice}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </div>
-        ) : (
-          <p>No bookings found.</p>
-        )}
-      </CardContent>
-    </Card>
-       </TabsContent>
+            <Card>
+              <CardHeader>
+                <CardTitle>Bookings</CardTitle>
+              </CardHeader>
+              <CardContent>
+                {bookings.length > 0 ? (
+                  <div className="overflow-x-auto">
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>Tour Package</TableHead>
+                          <TableHead>Name</TableHead>
+                          <TableHead>Email</TableHead>
+                          <TableHead>Phone</TableHead>
+                          <TableHead>Start Date</TableHead>
+                          <TableHead>Adults</TableHead>
+                          <TableHead>Children</TableHead>
+                          <TableHead>Payment Method</TableHead>
+                          <TableHead>Price ($)</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {bookings
+                          .slice()
+                          .reverse()
+                          .map((booking) => (
+                            <TableRow key={booking._id}>
+                              <TableCell>{booking.tourPackageBooked}</TableCell>
+                              <TableCell>{booking.name}</TableCell>
+                              <TableCell>{booking.email}</TableCell>
+                              <TableCell>{booking.phone}</TableCell>
+                              <TableCell>
+                                {new Date(
+                                  booking.startDate
+                                ).toLocaleDateString()}
+                              </TableCell>
+                              <TableCell>{booking.adults}</TableCell>
+                              <TableCell>{booking.children}</TableCell>
+                              <TableCell>{booking.paymentMethod}</TableCell>
+                              <TableCell>{booking.tourPackagePrice}</TableCell>
+                            </TableRow>
+                          ))}
+                      </TableBody>
+                    </Table>
+                  </div>
+                ) : (
+                  <p>No bookings found.</p>
+                )}
+              </CardContent>
+            </Card>
+          </TabsContent>
 
-       <TabsContent value="leads" className="space-y-4">
-  <Card>
-    <CardHeader>
-      <CardTitle>Leads</CardTitle>
-    </CardHeader>
-    <CardContent>
-      {leads.length > 0 ? (
-        <div className="overflow-x-auto">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Email</TableHead>
-                <TableHead>Phone</TableHead>
-                <TableHead>Created At</TableHead>
-                <TableHead>Country</TableHead>
-                <TableHead>Message</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {leads.slice().reverse().map((leads) => (
-                <TableRow key={leads._id}>
-                  <TableCell>{leads.email}</TableCell>
-                  <TableCell>{leads.phone}</TableCell>
-                  <TableCell>
-                    {leads.createdAt
-                      ? new Date(leads.createdAt).toLocaleString()
-                      : ""}
-                  </TableCell>
-                  <TableCell>{leads.country}</TableCell>
-                  <TableCell>{leads.message}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </div>
-      ) : (
-        <p>No Leads found.</p>
-      )}
-    </CardContent>
-  </Card>
-</TabsContent>
+          <TabsContent value="leads" className="space-y-4">
+            <Card>
+              <CardHeader>
+                <CardTitle>Leads</CardTitle>
+              </CardHeader>
+              <CardContent>
+                {leads.length > 0 ? (
+                  <div className="overflow-x-auto">
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>Email</TableHead>
+                          <TableHead>Phone</TableHead>
+                          <TableHead>Created At</TableHead>
+                          <TableHead>Country</TableHead>
+                          <TableHead>Message</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {leads
+                          .slice()
+                          .reverse()
+                          .map((leads) => (
+                            <TableRow key={leads._id}>
+                              <TableCell>{leads.email}</TableCell>
+                              <TableCell>{leads.phone}</TableCell>
+                              <TableCell>
+                                {leads.createdAt
+                                  ? new Date(leads.createdAt).toLocaleString()
+                                  : ""}
+                              </TableCell>
+                              <TableCell>{leads.country}</TableCell>
+                              <TableCell>{leads.message}</TableCell>
+                            </TableRow>
+                          ))}
+                      </TableBody>
+                    </Table>
+                  </div>
+                ) : (
+                  <p>No Leads found.</p>
+                )}
+              </CardContent>
+            </Card>
+          </TabsContent>
 
           <TabsContent value="settings" className="space-y-4">
             <Card>
@@ -1064,7 +1084,6 @@ export default function AdminComponent() {
               </CardContent>
             </Card>
           </TabsContent>
-          
         </Tabs>
 
         {errorMessage && (
