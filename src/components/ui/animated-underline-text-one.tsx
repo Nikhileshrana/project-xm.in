@@ -45,7 +45,7 @@ const AnimatedText = React.forwardRef<HTMLDivElement, AnimatedTextProps>(
         className={cn("flex flex-col items-center justify-center gap-2", props.className)}
       >
         <div className="relative">
-          <motion.h1
+          <motion.div
             className={cn("text-4xl font-bold text-center", textClassName)}
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -53,7 +53,7 @@ const AnimatedText = React.forwardRef<HTMLDivElement, AnimatedTextProps>(
             whileHover={{ scale: 1.02 }}
           >
             {text}
-          </motion.h1>
+          </motion.div>
 
           <motion.svg
             width="100%"
