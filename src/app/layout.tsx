@@ -44,6 +44,10 @@ export const metadata: Metadata = {
       "https://yzgm9kgloi90e8nh.public.blob.vercel-storage.com/MetaImage.jpg",
     ],
   },
+  other: {
+    'google': 'nositelinkssearchbox',
+    'googlebot': 'index,follow',
+  },
 };
 
 export default function RootLayout({
@@ -53,6 +57,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta name="google" content="notranslate" />
+      </head>
       <Script
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-CZVDB0N26Q"
