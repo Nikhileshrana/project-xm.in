@@ -1,0 +1,10 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.indiantraveltour.in
+
+# Sitemaps
+Sitemap: https://www.indiantraveltour.in/sitemap.xml
+Sitemap: https://www.indiantraveltour.in/server-sitemap.xml
